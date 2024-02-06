@@ -14,6 +14,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Type</th>
                 <th scope="col">Visibility</th>
+                <th scope="col">Option</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,8 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->type }}</td>
                     <td>{{ $project->visibility }}</td>
+                    <td><a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-primary btn-sm">details</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
