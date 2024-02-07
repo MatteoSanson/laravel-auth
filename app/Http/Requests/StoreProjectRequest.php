@@ -11,7 +11,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,24 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|unique:projects,title|min:3|max:50',
+            'type' => 'nullable|min:2|max:50',
+            'visibility' => 'nullable|max:7',
+            'slug' => 'unique:projects,slug',
         ];
+    // }
+
+    // /**
+    //  * messaggio per gli errori.
+    //  *
+    //  * @return array<string, 
+    //  */
+    // public function messages()
+    // {
+    //     return [
+    //         'title.min' => 'Il campo "title" deve essere lungo almeno :min caratteri.',
+    //         'title.max' => 'Il campo "title" non può superare i :max caratteri.',
+    //         'type.max' => 'Il campo "type" non può superare i :max caratteri.',
+    //     ];
     }
 }

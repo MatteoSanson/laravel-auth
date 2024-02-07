@@ -3,7 +3,6 @@
 @section('content')
     <div class="my-3">
         <h1>{{ $project->title }}</h1>
-        <a href="{{ route('admin.projects.index') }}">Back to your projects</a>
     </div>
     <div class="card">
         <div class="card-header">

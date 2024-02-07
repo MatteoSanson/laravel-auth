@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -32,7 +33,23 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+        $project = new Project();
+        $project->title = $data['title'];
+        $project->type = $data['type'];
+        $project->visibility = $data['visibility'];
+        // Genera lo slug e verifica se esiste già
+        $slug = Str::slug($data['title']);
+        $count = Project::where('slug', $slug)->count();
+        if ($count > 0) {
+        // Se lo slug esiste già, aggiungi un numero sequenziale
+        $slug = $slug . '-' . ($count + 1);
+        }
+        $project->slug = $slug;
+
+        $project->save();
+
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**

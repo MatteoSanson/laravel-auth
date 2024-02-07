@@ -63,10 +63,21 @@
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('admin.projects.index') }}">
+                                    <i class="fa-regular fa-folder fa-lg fa-fw"></i> Project
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('admin.projects.create') }}">
+                                    <i class="fa-solid fa-plus fa-lg fa-fw"></i> New
+                                    Project
+                                </a>
+                            </li>
+                            {{-- <li>
                                 <a class="nav-link text-white" href="{{ route('admin.projects.create') }}">New
                                     Project</a>
-                            </li>
+                            </li> --}}
                         </ul>
 
 

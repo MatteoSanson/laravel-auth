@@ -15,10 +15,6 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-
-                        <div>
-                            <a href="{{ route('admin.projects.index') }}" class="text-decoration-none">Go to your projects</a>
-                        </div>
                     </div>
 
                 </div>
