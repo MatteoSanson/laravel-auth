@@ -24,7 +24,7 @@
         </div>
         <div class="card-body">
             <p class="card-text">{{ $project->type }}</p>
-            <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary btn-sm">Edit</a>
         </div>
     </div>
 @endsection

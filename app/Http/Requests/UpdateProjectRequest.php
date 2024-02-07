@@ -43,14 +43,4 @@ class UpdateProjectRequest extends FormRequest
         'slug' => 'unique:projects,slug',
     ];
 }
-
-    public function withValidator($validator){
-    $project = $this->route('project');
-
-    $validator->addImplicitExtension('ignore_project_slug', function ($attribute, $value, $parameters, $validator) use ($project) {
-        return Rule::unique('projects', 'title')->ignore($project->slug)->ignore($value, 'slug');
-    });
-
-    return $validator;
-}
 }
