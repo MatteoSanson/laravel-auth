@@ -49,7 +49,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect()->route('admin.projects.show', $project->slug);
+        return redirect()->route('admin.projects.show', $project->slug)->with('message', 'Progetto creato con successo!');
     }
 
     /**
