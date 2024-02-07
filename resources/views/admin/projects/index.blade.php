@@ -24,7 +24,10 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->type }}</td>
                     <td>{{ $project->visibility }}</td>
-                    <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary btn-sm">details</a>
+                    <td>
+                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary btn-sm">details</a>
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary btn-sm">edit</a>
+                        <a href="#" class="btn btn-danger btn-sm">delete</a>
                     </td>
                 </tr>
             @endforeach
