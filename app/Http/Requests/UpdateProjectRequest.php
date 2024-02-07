@@ -21,21 +21,28 @@ class UpdateProjectRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        $project = $this->route('project');
+{
+    $project = $this->route('project');
+
+    $titleRules = [
+        'required',
+        'min:3',
+        'max:50',
+        Rule::unique('projects', 'title')->ignore($project->id, 'id')
+    ];
+
+    if ($this->input('title') === $project->title) {
+        // Rimuovi la regola di unicità se il titolo non viene modificato
+        unset($titleRules[4]);
+    }
 
     return [
-        'title' => [
-            'required',
-            Rule::unique('projects', 'title')->ignore($project->slug),
-            'min:3',
-            'max:50',
-        ],
+        'title' => $titleRules,
         'type' => 'nullable|min:2|max:50',
         'visibility' => 'nullable|max:7',
         'slug' => 'unique:projects,slug',
-        ];
-    }
+    ];
+}
 
     public function withValidator($validator){
     $project = $this->route('project');

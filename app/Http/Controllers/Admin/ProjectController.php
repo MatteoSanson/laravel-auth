@@ -74,7 +74,23 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
-        $project->update($data);
+    
+        // Aggiorna il titolo e altri campi
+        $project->title = $data['title'];
+        $project->type = $data['type'];
+        $project->visibility = $data['visibility'];
+
+        // Genera lo slug e verifica se esiste già
+        $slug = Str::slug($data['title']);
+        $count = Project::where('slug', $slug)->where('id', '!=', $project->id)->count();
+        if ($count > 0) {
+            // Se lo slug esiste già, aggiungi un numero sequenziale
+            $slug = $slug . '-' . ($count + 1);
+        }
+
+        $project->slug = $slug;
+
+        $project->save();
 
         return redirect()->route('admin.projects.show', $project->slug);
     }

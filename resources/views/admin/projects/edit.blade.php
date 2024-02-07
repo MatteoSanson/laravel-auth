@@ -23,7 +23,7 @@
             <div class="mb-3">
                 <label class="form-label">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                    value="{{ old('title', 'title') }}">
+                    value="{{ old('title', $project->title) }}">
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -31,7 +31,7 @@
             <div class="mb-3">
                 <label class="form-label">Type</label>
                 <input type="text" class="form-control @error('type') is-invalid @enderror" name="type"
-                    value="{{ old('type', 'type') }}">
+                    value="{{ old('type', $project->type) }}">
                 @error('type')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
