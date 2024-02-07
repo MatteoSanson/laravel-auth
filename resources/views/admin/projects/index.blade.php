@@ -1,11 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
-    {{-- <ul>
-        @foreach ($projects as $project)
-            <li>{{ $project->title }}</li>
-        @endforeach
-    </ul> --}}
+    @if (session('message'))
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="toast show bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Notifica</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('message') }}
+                </div>
+            </div>
+        </div>
+    @endif
 
     <table class="table">
         <thead>
@@ -27,7 +35,12 @@
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary btn-sm">details</a>
                         <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary btn-sm">edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">delete</a>
+                        <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST"
+                            class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                        </form>
                     </td>
                 </tr>
             @endforeach
